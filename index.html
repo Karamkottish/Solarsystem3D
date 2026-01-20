@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Journey | Immersive Solar System</title>
+  <meta name="description"
+    content="Explore the wonders of our solar system in this immersive 3D experience. Realistic planets, interactive data, and cinematic orbits." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- 3D Canvas Container -->
+  <div id="app">
+    <canvas id="experience-canvas"></canvas>
+  </div>
+
+  <!-- UI Overlays -->
+  <div id="ui-container">
+    <!-- Loading Screen -->
+    <section id="loading-screen" class="active">
+      <div class="loader-content">
+        <h1 class="logo-text">COSMIC JOURNEY</h1>
+        <div class="progress-bar-container">
+          <div id="progress-bar"></div>
+        </div>
+        <p id="loading-status">Initializing Warp Drive...</p>
+      </div>
+    </section>
+
+    <!-- HUD (Heads-Up Display) -->
+    <nav id="hud">
+      <div class="hud-top-left">
+        <span class="hud-label">DATE/TIME</span>
+        <span id="sim-date" class="hud-value">2026-01-20</span>
+      </div>
+      <div class="hud-top-right">
+        <button id="scale-mode-toggle" class="hud-button">
+          <span class="label">SCALE: CINEMATIC</span>
+        </button>
+        <button id="free-fly-toggle" class="hud-button">
+          <span class="label">FREE FLIGHT: OFF</span>
+        </button>
+        <button id="menu-toggle" class="hud-button">
+          <span class="icon"></span>
+          <span class="label">MENU</span>
+        </button>
+      </div>
+
+      <div class="hud-bottom-left">
+        <div class="target-info">
+          <span class="hud-label">CURRENT TARGET</span>
+          <h2 id="target-name" class="hud-value">SUN</h2>
+        </div>
+      </div>
+
+      <div class="hud-bottom-right">
+        <div class="sim-controls">
+          <span class="hud-label">TIME ACCELERATION</span>
+          <div class="speed-picker">
+            <button data-speed="1" class="speed-btn active">1x</button>
+            <button data-speed="10" class="speed-btn">10x</button>
+            <button data-speed="100" class="speed-btn">100x</button>
+            <button data-speed="1000" class="speed-btn">1000x</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Scroll Narrative Container -->
+    <main id="scroll-container">
+      <div class="scroll-section" id="section-sun">
+        <div class="content-box glass">
+          <span class="tag">THE HEART OF OUR SYSTEM</span>
+          <h1>THE SUN</h1>
+          <p>A nearly perfect sphere of hot plasma, the Sun provides the energy that sustains all life on Earth.</p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-mercury">
+        <div class="content-box glass">
+          <span class="tag">THE SWIFT PLANET</span>
+          <h1>MERCURY</h1>
+          <p>The smallest and innermost planet in the Solar System, Mercury speeds around the Sun every 88 days.</p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-venus">
+        <div class="content-box glass">
+          <span class="tag">THE VEILED PLANET</span>
+          <h1>VENUS</h1>
+          <p>Often called Earth's sister, Venus is the hottest planet in our solar system with a runaway greenhouse
+            effect.</p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-earth">
+        <div class="content-box glass">
+          <span class="tag">THE BLUE MARBLE</span>
+          <h1>EARTH</h1>
+          <p>Our home planet, the only place in the universe known to harbor life. A fragile oasis in the void.</p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-mars">
+        <div class="content-box glass">
+          <span class="tag">THE RED PLANET</span>
+          <h1>MARS</h1>
+          <p>A cold, desert world with a thin atmosphere. Home to Olympus Mons, the largest volcano in the solar system.
+          </p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-jupiter">
+        <div class="content-box glass">
+          <span class="tag">KING OF PLANETS</span>
+          <h1>JUPITER</h1>
+          <p>The most massive planet in our solar system, a gas giant with 95 moons and a Great Red Spot storm.</p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-saturn">
+        <div class="content-box glass">
+          <span class="tag">LORD OF THE RINGS</span>
+          <h1>SATURN</h1>
+          <p>Famous for its spectacular ring system, Saturn is a gas giant primarily composed of hydrogen and helium.
+          </p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-uranus">
+        <div class="content-box glass">
+          <span class="tag">THE ICE GIANT</span>
+          <h1>URANUS</h1>
+          <p>An ice giant that rotates on its side, Uranus has a uniquely cold atmosphere and faint rings.</p>
+        </div>
+      </div>
+
+      <div class="scroll-section" id="section-neptune">
+        <div class="content-box glass">
+          <span class="tag">THE DISTANT DEPTHS</span>
+          <h1>NEPTUNE</h1>
+          <p>The most distant planet from the Sun, Neptune is a cold, dark, and ice-giant world whipped by supersonic
+            winds.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Info Panel (Appears on planet selection) -->
+    <aside id="info-panel" class="hidden">
+      <button id="close-panel" class="close-btn">&times;</button>
+      <div class="panel-content glass">
+        <div class="scroll-wrapper">
+          <h2 id="panel-title">PLANET NAME</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="label">MASS</span>
+              <span id="stat-mass" class="value">--</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">RADIUS</span>
+              <span id="stat-radius" class="value">--</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">GRAVITY</span>
+              <span id="stat-gravity" class="value">--</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">DISTANCE (AU)</span>
+              <span id="stat-distance" class="value">--</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">ECCENTRICITY</span>
+              <span id="stat-eccentricity" class="value">--</span>
+            </div>
+          </div>
+          <div class="composition-info">
+            <h3>COMPOSITION</h3>
+            <p id="composition-text">Loading data...</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
