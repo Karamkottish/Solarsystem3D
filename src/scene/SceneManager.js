@@ -205,6 +205,8 @@ export class SceneManager {
             this.orbitalSystem.setScaleMode(this.isRealisticScale);
             scaleToggle.querySelector('.label').innerText = `SCALE: ${this.isRealisticScale ? 'REALISTIC' : 'CINEMATIC'}`;
         });
+
+        this.simulationEpoch = new Date();
     }
 
     update() {
@@ -221,9 +223,17 @@ export class SceneManager {
             // Update Sun shaders
             if (this.sun) this.sun.update(this.clock.getElapsedTime());
             // Update date display
-            const date = new Date();
+            const date = new Date(this.simulationEpoch);
             date.setSeconds(date.getSeconds() + (this.orbitalSystem.elapsedDays * 86400));
-            const options = { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+            const options = {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
             this.simDateElement.innerText = date.toLocaleString('en-US', options).toUpperCase();
         }
 
