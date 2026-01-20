@@ -41,6 +41,9 @@
       <div class="hud-top-left">
         <span class="hud-label">DATE/TIME</span>
         <span id="sim-date" class="hud-value">2026-01-20</span>
+        <button id="mission-control-toggle" class="hud-button mission-btn">
+          <span class="label">MISSION CONTROL</span>
+        </button>
       </div>
       <div class="hud-top-right">
         <button id="scale-mode-toggle" class="hud-button">
@@ -151,8 +154,37 @@
           <p>The most distant planet from the Sun, Neptune is a cold, dark, and ice-giant world whipped by supersonic
             winds.</p>
         </div>
-      </div>
     </main>
+
+    <!-- Mission Control Panel (NASA Live Feed) -->
+    <aside id="mission-control" class="hidden">
+      <button id="close-mission" class="close-btn">&times;</button>
+      <div class="panel-content glass">
+        <div class="mission-header">
+          <span class="tag">LIVE FROM NASA</span>
+          <h2>MISSION CONTROL</h2>
+        </div>
+        <div class="scroll-wrapper">
+          <div id="apod-container" class="mission-block">
+            <h3 class="block-title">ASTRONOMY PICTURE OF THE DAY</h3>
+            <div class="apod-media" id="apod-media">
+              <div class="loader-small"></div>
+            </div>
+            <h4 id="apod-title">--</h4>
+            <p id="apod-desc" class="dim">Initializing telemetry...</p>
+          </div>
+
+          <div class="mission-block">
+            <h3 class="block-title">ACTIVE MISSION UPDATES</h3>
+            <ul id="mission-feed" class="feed-list">
+              <li><span class="feed-tag">ARTEMIS II</span> Preparing for roll-out to Pad 39B...</li>
+              <li><span class="feed-tag">MARS 2020</span> Perseverance exploring Jezero Crater...</li>
+              <li><span class="feed-tag">JWST</span> Capturing deep-field infrared imagery...</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
 
     <!-- Info Panel (Appears on planet selection) -->
     <aside id="info-panel" class="hidden">

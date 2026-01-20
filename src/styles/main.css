@@ -283,7 +283,8 @@ canvas {
 }
 
 /* Info Panel */
-#info-panel {
+#info-panel,
+#mission-control {
   position: fixed;
   right: -450px;
   top: 0;
@@ -291,12 +292,22 @@ canvas {
   height: 100vh;
   z-index: 100;
   padding: var(--space-md);
-  transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: auto;
+}
+
+#mission-control {
+  left: -450px;
+  right: auto;
+  z-index: 101;
 }
 
 #info-panel.visible {
   right: 0;
+}
+
+#mission-control.visible {
+  left: 0;
 }
 
 .panel-content {
@@ -364,14 +375,109 @@ canvas {
   font-size: 1.1rem;
 }
 
-.composition-info h3 {
+.composition-info h3,
+.mission-header h2 {
   font-family: var(--font-display);
   font-size: 1rem;
   margin-bottom: 10px;
   color: var(--color-primary);
 }
 
+.mission-header h2 {
+  font-size: 1.8rem;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .composition-info p {
   line-height: 1.6;
   color: var(--color-text-dim);
+}
+
+/* Mission Control Specifics */
+.mission-block {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 20px;
+}
+
+.block-title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+#apod-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  margin: 15px 0 5px 0;
+  color: #fff;
+}
+
+#apod-desc {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+.feed-list {
+  list-style: none;
+}
+
+.feed-list li {
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  color: var(--color-text-dim);
+}
+
+.feed-tag {
+  color: var(--color-accent);
+  font-weight: bold;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.mission-btn {
+  margin-left: 15px;
+  font-size: 0.7rem;
+  border-color: var(--color-accent);
+}
+
+.mission-btn:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px rgba(255, 0, 200, 0.3);
+}
+
+.loader-small {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-glass-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+
+  #info-panel,
+  #mission-control {
+    width: 100%;
+    right: -100%;
+    left: -100%;
+  }
 }

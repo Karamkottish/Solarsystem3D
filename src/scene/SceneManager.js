@@ -5,6 +5,7 @@ import { OrbitalSystem } from '../physics/OrbitalSystem.js';
 import { CameraController } from './CameraController.js';
 import { PlanetSelector } from '../interactions/PlanetSelector.js';
 import { InfoPanel } from '../interactions/InfoPanel.js';
+import { MissionControl } from '../interactions/MissionControl.js';
 import { textureLoader } from '../utils/TextureLoader.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -158,6 +159,7 @@ export class SceneManager {
 
     setupInteraction() {
         this.infoPanel = new InfoPanel();
+        this.missionControl = new MissionControl();
         this.planetSelector = new PlanetSelector(
             this.scene,
             this.camera,
@@ -219,9 +221,10 @@ export class SceneManager {
             // Update Sun shaders
             if (this.sun) this.sun.update(this.clock.getElapsedTime());
             // Update date display
-            const date = new Date(2026, 0, 20);
-            date.setDate(date.getDate() + Math.floor(this.orbitalSystem.elapsedDays));
-            this.simDateElement.innerText = date.toISOString().split('T')[0];
+            const date = new Date();
+            date.setSeconds(date.getSeconds() + (this.orbitalSystem.elapsedDays * 86400));
+            const options = { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+            this.simDateElement.innerText = date.toLocaleString('en-US', options).toUpperCase();
         }
 
         if (this.stars) {
