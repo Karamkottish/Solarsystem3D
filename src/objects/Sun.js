@@ -12,7 +12,7 @@ export class Sun {
         const geometry = new THREE.SphereGeometry(10, 64, 64);
 
         // Load surface texture
-        const texture = await textureLoader.load('/assets/textures/sun_diffuse.png');
+        const texture = await textureLoader.load('assets/textures/sun_diffuse.png');
 
         // Custom Shader Material for realistic sun surface
         this.material = new THREE.ShaderMaterial({

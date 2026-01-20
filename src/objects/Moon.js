@@ -15,7 +15,7 @@ export class Moon {
         const radius = this.data.radius * SCALE_CONFIG.planetScale;
         const geometry = new THREE.SphereGeometry(radius, 32, 32);
 
-        const texture = await textureLoader.load('/assets/textures/moon_diffuse.png');
+        const texture = await textureLoader.load('assets/textures/moon_diffuse.png');
 
         this.material = new THREE.MeshStandardMaterial({
             map: texture,

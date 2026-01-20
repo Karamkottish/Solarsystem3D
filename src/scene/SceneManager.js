@@ -76,7 +76,7 @@ export class SceneManager {
     }
 
     async setupBackground() {
-        const texture = await textureLoader.load('/assets/textures/starfield.png');
+        const texture = await textureLoader.load('assets/textures/starfield.png');
         texture.mapping = THREE.EquirectangularReflectionMapping;
         this.scene.background = texture;
     }

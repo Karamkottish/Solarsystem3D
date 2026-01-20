@@ -18,11 +18,11 @@ export class Planet {
 
         // Load textures (Multi-layer support)
         const textureKey = this.name.toLowerCase();
-        const diffuseMap = await textureLoader.load(`/assets/textures/${textureKey}_diffuse.png`);
+        const diffuseMap = await textureLoader.load(`assets/textures/${textureKey}_diffuse.png`);
 
         // Attempt to load optional maps
-        const normalMap = await textureLoader.load(`/assets/textures/${textureKey}_normal.png`).catch(() => null);
-        const specularMap = await textureLoader.load(`/assets/textures/${textureKey}_specular.png`).catch(() => null);
+        const normalMap = await textureLoader.load(`assets/textures/${textureKey}_normal.png`).catch(() => null);
+        const specularMap = await textureLoader.load(`assets/textures/${textureKey}_specular.png`).catch(() => null);
 
         // Material (High-quality PBR material)
         this.material = new THREE.MeshStandardMaterial({
@@ -94,7 +94,7 @@ export class Planet {
         const outerRadius = planetRadius * 2.4;
         const geometry = new THREE.RingGeometry(innerRadius, outerRadius, 128);
 
-        const texture = await textureLoader.load('/assets/textures/saturn_rings.png');
+        const texture = await textureLoader.load('assets/textures/saturn_rings.png');
 
         const material = new THREE.MeshBasicMaterial({
             map: texture,
